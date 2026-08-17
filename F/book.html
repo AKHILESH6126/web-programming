@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Specification Drawing // Book Detail</title>
+  <meta name="description" content="Engineering technical specification drawing sheet for book entry.">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+  <!-- Custom Blueprint CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Accessibility Skip Link -->
+  <a href="#main-content" class="skip-link">SKIP TO MAIN CONTENT</a>
+
+  <!-- Blueprint Header -->
+  <header class="blueprint-header">
+    <div class="header-container">
+      <div class="wordmark-block">
+        <span class="tech-code">DWG-SPEC-F // REV 4.2</span>
+        <h1 class="wordmark-title"><a href="index.html">TECHNICAL BOOK ARCHIVE</a></h1>
+        <span class="tech-sub">ENGINEERING DRAUGHTING CATALOGUE</span>
+      </div>
+      <div class="header-actions">
+        <button id="bom-toggle-btn" class="btn btn-cyan" aria-expanded="false" aria-controls="bom-modal">
+          <span class="btn-icon">📐</span> DRAFTING SET <span id="bom-count-badge" class="badge">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="main-content" class="main-container">
+
+    <!-- Detail Top Navigation Bar -->
+    <div class="detail-nav-bar">
+      <a href="index.html" class="btn btn-outline-cyan">← BACK TO INDEX SHEET</a>
+      <span id="detail-dwg-code" class="tech-code-large">DWG NO: ---</span>
+    </div>
+
+    <!-- Container for dynamic detail view -->
+    <div id="detail-container">
+      <!-- Rendered dynamically by js/detail.js -->
+    </div>
+
+  </main>
+
+  <!-- Bill of Materials (Drafting Set) Modal -->
+  <div id="bom-modal" class="modal-overlay hidden" aria-hidden="true" role="dialog" aria-labelledby="bom-modal-title">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title-block">
+          <span class="tech-label">PARTS SCHEDULE // DWG-SET-01</span>
+          <h2 id="bom-modal-title">BILL OF MATERIALS — DRAFTING SET</h2>
+        </div>
+        <button id="bom-close-btn" class="btn-close" aria-label="Close Drafting Set Modal">✕</button>
+      </div>
+      <div class="modal-body">
+        <div id="bom-table-container">
+          <!-- Rendered dynamically by JS -->
+        </div>
+      </div>
+      <div class="modal-footer">
+        <span id="bom-total-count" class="tech-stat">TOTAL SHEETS: 0</span>
+        <button id="bom-clear-btn" class="btn btn-outline-danger">CLEAR DRAFTING SET</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Engineering Footer Title Block -->
+  <footer class="blueprint-footer">
+    <div class="footer-container">
+      <div class="footer-title-block">
+        <div class="title-block-cell">
+          <span class="cell-label">PROJECT:</span>
+          <span class="cell-val">GLOBAL LITERARY INDEX</span>
+        </div>
+        <div class="title-block-cell">
+          <span class="cell-label">DRAWING NO:</span>
+          <span class="cell-val">DWG-2026-F-DET</span>
+        </div>
+        <div class="title-block-cell">
+          <span class="cell-label">SCALE:</span>
+          <span class="cell-val">1:1 DETAIL</span>
+        </div>
+        <div class="title-block-cell">
+          <span class="cell-label">REVISION:</span>
+          <span class="cell-val">REV 4.2</span>
+        </div>
+        <div class="title-block-cell">
+          <span class="cell-label">DRAUGHTSMAN:</span>
+          <span class="cell-val">ANTIGRAVITY // ENGINE</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/books.js"></script>
+  <script src="js/detail.js"></script>
+</body>
+</html>

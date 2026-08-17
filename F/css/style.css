@@ -1,0 +1,1132 @@
+/* ==========================================================================
+   BLUEPRINT ARCHIVE // CSS DESIGN SYSTEM
+   Engineering Draughting & Technical Schematic Style
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   0. Custom Properties & Tokens
+   -------------------------------------------------------------------------- */
+:root {
+  /* Color Palette - Deep Blueprint Blue + Cyan Ink */
+  --bg-deep-blue: #0b1d3a;
+  --bg-card-blue: #08172c;
+  --bg-panel-blue: #0e2447;
+  --bg-input: #051124;
+
+  --cyan-bright: #00f0ff;
+  --cyan-mid: #5ce1e6;
+  --cyan-dim: rgba(0, 240, 255, 0.12);
+  --cyan-glow: rgba(0, 240, 255, 0.28);
+  --cyan-border: rgba(0, 240, 255, 0.35);
+  --cyan-border-strong: #00f0ff;
+
+  --text-white: #ffffff;
+  --text-main: #e0f7fc;
+  --text-cyan: #79dae8;
+  --text-muted: #84a5c0;
+
+  --accent-gold: #ffd166;
+  --accent-gold-dim: rgba(255, 209, 102, 0.15);
+  --accent-red: #ff5964;
+  --accent-red-dim: rgba(255, 89, 100, 0.15);
+
+  /* Typography */
+  --font-mono: 'JetBrains Mono', 'IBM Plex Mono', Courier, monospace;
+  --font-heading: 'Oswald', 'JetBrains Mono', sans-serif;
+
+  /* Spacing & Borders */
+  --border-radius: 0px; /* Technical precision - squared borders */
+  --box-shadow-blueprint: 0 4px 20px rgba(0, 0, 0, 0.4), 0 0 10px rgba(0, 240, 255, 0.1);
+}
+
+/* --------------------------------------------------------------------------
+   1. Reset & Global Styles
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+body {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--text-main);
+  background-color: var(--bg-deep-blue);
+  /* CSS Grid Graph Paper Overlay */
+  background-image: 
+    repeating-linear-gradient(0deg, rgba(0, 240, 255, 0.05) 0px, rgba(0, 240, 255, 0.05) 1px, transparent 1px, transparent 24px),
+    repeating-linear-gradient(90deg, rgba(0, 240, 255, 0.05) 0px, rgba(0, 240, 255, 0.05) 1px, transparent 1px, transparent 24px),
+    repeating-linear-gradient(0deg, rgba(0, 240, 255, 0.12) 0px, rgba(0, 240, 255, 0.12) 1px, transparent 1px, transparent 120px),
+    repeating-linear-gradient(90deg, rgba(0, 240, 255, 0.12) 0px, rgba(0, 240, 255, 0.12) 1px, transparent 1px, transparent 120px);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+/* Typography Defaults */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-white);
+  line-height: 1.2;
+}
+
+a {
+  color: var(--cyan-bright);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+a:hover {
+  color: var(--text-white);
+}
+
+/* Accessibility Skip Link */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 10px;
+  background: var(--cyan-bright);
+  color: var(--bg-deep-blue);
+  padding: 10px 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  z-index: 9999;
+  border: 2px solid var(--text-white);
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 10px;
+}
+
+/* Focus Visible Accessibility */
+:focus-visible {
+  outline: 2px solid var(--cyan-bright) !important;
+  outline-offset: 3px !important;
+  box-shadow: 0 0 10px var(--cyan-bright) !important;
+}
+
+/* Hidden Utility */
+.hidden {
+  display: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   2. Blueprint Header & Navigation
+   -------------------------------------------------------------------------- */
+.blueprint-header {
+  border-bottom: 2px solid var(--cyan-border-strong);
+  background: rgba(8, 23, 44, 0.95);
+  backdrop-filter: blur(8px);
+  position: sticky;
+  top: 0;
+  z-index: 500;
+}
+
+.header-container {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.wordmark-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.wordmark-block .tech-code {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: var(--cyan-mid);
+  text-transform: uppercase;
+}
+
+.wordmark-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 2px 0;
+  letter-spacing: 0.1em;
+}
+
+.wordmark-title a {
+  color: var(--text-white);
+}
+
+.wordmark-title a:hover {
+  color: var(--cyan-bright);
+}
+
+.wordmark-block .tech-sub {
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  color: var(--text-muted);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Buttons System */
+.btn {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 10px 18px;
+  border: 1px solid var(--cyan-border-strong);
+  background: var(--cyan-dim);
+  color: var(--cyan-bright);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.btn:hover {
+  background: var(--cyan-bright);
+  color: var(--bg-deep-blue);
+  box-shadow: 0 0 12px var(--cyan-glow);
+}
+
+.btn-cyan {
+  background: rgba(0, 240, 255, 0.15);
+  color: var(--cyan-bright);
+}
+
+.btn-outline-cyan {
+  background: transparent;
+  border-color: var(--cyan-border);
+  color: var(--text-cyan);
+}
+
+.btn-outline-cyan:hover {
+  border-color: var(--cyan-bright);
+  background: var(--cyan-dim);
+  color: var(--text-white);
+}
+
+.btn-outline-danger {
+  background: var(--accent-red-dim);
+  border-color: var(--accent-red);
+  color: var(--accent-red);
+}
+
+.btn-outline-danger:hover {
+  background: var(--accent-red);
+  color: var(--text-white);
+}
+
+.btn-close {
+  background: transparent;
+  border: 1px solid var(--cyan-border);
+  color: var(--text-cyan);
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+.btn-close:hover {
+  border-color: var(--accent-red);
+  color: var(--accent-red);
+  background: var(--accent-red-dim);
+}
+
+.badge {
+  background: var(--cyan-bright);
+  color: var(--bg-deep-blue);
+  padding: 2px 7px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 0px;
+}
+
+/* --------------------------------------------------------------------------
+   3. Main Container & Hero Title Block
+   -------------------------------------------------------------------------- */
+.main-container {
+  max-width: 1360px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 24px 20px;
+  flex: 1;
+}
+
+/* Hero / Drawing Header Box */
+.sheet-hero {
+  position: relative;
+  background: rgba(8, 23, 44, 0.7);
+  border: 1px solid var(--cyan-border);
+  padding: 20px;
+  margin-bottom: 24px;
+}
+
+.hero-corner-tick {
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  color: var(--cyan-bright);
+  line-height: 1;
+  pointer-events: none;
+}
+.hero-corner-tick.tl { top: -6px; left: -6px; }
+.hero-corner-tick.tr { top: -6px; right: -6px; }
+.hero-corner-tick.bl { bottom: -6px; left: -6px; }
+.hero-corner-tick.br { bottom: -6px; right: -6px; }
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  padding: 16px;
+}
+
+.sheet-info-cell {
+  display: flex;
+  flex-direction: column;
+}
+
+.cell-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.cell-value {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  color: var(--text-white);
+  letter-spacing: 0.05em;
+}
+
+.status-active {
+  color: var(--cyan-bright);
+}
+
+/* --------------------------------------------------------------------------
+   4. Toolbar & Controls (Search, Sort, Genre Chips)
+   -------------------------------------------------------------------------- */
+.toolbar-section {
+  background: var(--bg-card-blue);
+  border: 1px solid var(--cyan-border);
+  padding: 20px;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.toolbar-top {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .toolbar-top {
+    grid-template-columns: 1fr;
+  }
+}
+
+.tech-label {
+  display: block;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: var(--cyan-mid);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 12px;
+  font-size: 0.9rem;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.tech-input {
+  width: 100%;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  background: var(--bg-input);
+  border: 1px solid var(--cyan-border);
+  color: var(--text-white);
+  padding: 10px 12px 10px 38px;
+  border-radius: 0px;
+}
+
+.tech-input::placeholder {
+  color: var(--text-muted);
+  opacity: 0.6;
+}
+
+.tech-select {
+  width: 100%;
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  background: var(--bg-input);
+  border: 1px solid var(--cyan-border);
+  color: var(--cyan-bright);
+  padding: 10px 12px;
+  border-radius: 0px;
+  cursor: pointer;
+}
+
+/* Genre Chips */
+.genre-chips-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip-btn {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: rgba(0, 240, 255, 0.05);
+  border: 1px solid var(--cyan-border);
+  color: var(--text-muted);
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.chip-btn:hover {
+  border-color: var(--cyan-bright);
+  color: var(--cyan-bright);
+  background: var(--cyan-dim);
+}
+
+.chip-btn.active {
+  background: var(--cyan-bright);
+  color: var(--bg-deep-blue);
+  border-color: var(--cyan-bright);
+  font-weight: 700;
+  box-shadow: 0 0 8px var(--cyan-glow);
+}
+
+/* --------------------------------------------------------------------------
+   5. Results Counter Bar & Decorative Dimension Line
+   -------------------------------------------------------------------------- */
+.results-bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.dim-line-decor {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  color: var(--cyan-border);
+  font-size: 0.75rem;
+}
+
+.dim-arrow {
+  color: var(--cyan-mid);
+}
+
+.dim-body {
+  flex: 1;
+  height: 1px;
+  background: var(--cyan-border);
+  margin: 0 4px;
+}
+
+.results-count-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg-card-blue);
+  border: 1px solid var(--cyan-border);
+  padding: 6px 16px;
+}
+
+.count-value {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  color: var(--cyan-bright);
+  letter-spacing: 0.08em;
+}
+
+/* --------------------------------------------------------------------------
+   6. Books Spec Grid & Card Styling
+   -------------------------------------------------------------------------- */
+.books-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+/* Book Technical Card */
+.spec-card {
+  position: relative;
+  background: var(--bg-card-blue);
+  border: 1px solid var(--cyan-border);
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.spec-card:hover {
+  border-color: var(--cyan-bright);
+  box-shadow: var(--box-shadow-blueprint);
+  transform: translateY(-2px);
+}
+
+.card-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+}
+
+.fig-label {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  color: var(--cyan-bright);
+}
+
+.genre-pill {
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-cyan);
+  border: 1px solid var(--cyan-border);
+  padding: 2px 8px;
+  background: rgba(0, 240, 255, 0.05);
+}
+
+/* Frame Cover Image */
+.card-cover-frame {
+  position: relative;
+  width: 100%;
+  height: 260px;
+  border: 1px solid var(--cyan-border);
+  background: var(--bg-input);
+  overflow: hidden;
+  margin-bottom: 14px;
+}
+
+/* Corner ticks on cover frame */
+.frame-corner {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-color: var(--cyan-bright);
+  border-style: solid;
+  z-index: 10;
+  pointer-events: none;
+}
+.frame-corner.tl { top: 2px; left: 2px; border-width: 1px 0 0 1px; }
+.frame-corner.tr { top: 2px; right: 2px; border-width: 1px 1px 0 0; }
+.frame-corner.bl { bottom: 2px; left: 2px; border-width: 0 0 1px 1px; }
+.frame-corner.br { bottom: 2px; right: 2px; border-width: 0 1px 1px 0; }
+
+.card-cover-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Fallback Cover Block */
+.cover-fallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  text-align: center;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.fallback-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 2;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+}
+
+.fallback-title {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+}
+
+.fallback-author {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  opacity: 0.9;
+  letter-spacing: 0.05em;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.card-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+
+.card-title a {
+  color: var(--text-white);
+}
+
+.card-title a:hover {
+  color: var(--cyan-bright);
+}
+
+.card-author {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+/* Callout Dimension Stats */
+.card-stats-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  border-top: 1px dashed rgba(0, 240, 255, 0.25);
+  border-bottom: 1px dashed rgba(0, 240, 255, 0.25);
+  padding: 8px 0;
+  margin-bottom: 14px;
+}
+
+.stat-item {
+  color: var(--text-cyan);
+}
+
+.stat-rating {
+  color: var(--accent-gold);
+  font-weight: 700;
+}
+
+.card-actions {
+  margin-top: auto;
+  display: flex;
+  gap: 10px;
+}
+
+.card-actions .btn {
+  flex: 1;
+  font-size: 0.74rem;
+  padding: 8px 10px;
+}
+
+.btn-toggle-set.in-set {
+  background: var(--cyan-bright);
+  color: var(--bg-deep-blue);
+  border-color: var(--cyan-bright);
+}
+
+/* --------------------------------------------------------------------------
+   7. Empty State View
+   -------------------------------------------------------------------------- */
+.empty-state {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.empty-box {
+  max-width: 500px;
+  margin: 0 auto;
+  background: var(--bg-card-blue);
+  border: 1px dashed var(--cyan-border-strong);
+  padding: 36px 24px;
+}
+
+.empty-code {
+  font-size: 0.8rem;
+  color: var(--accent-red);
+  letter-spacing: 0.15em;
+  margin-bottom: 12px;
+}
+
+.empty-box h2 {
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+}
+
+.empty-box p {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-bottom: 20px;
+}
+
+/* --------------------------------------------------------------------------
+   8. Detail Page Specific Layout (book.html)
+   -------------------------------------------------------------------------- */
+.detail-nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.tech-code-large {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  color: var(--cyan-bright);
+  letter-spacing: 0.1em;
+}
+
+.detail-sheet-grid {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 28px;
+  margin-bottom: 40px;
+}
+
+@media (max-width: 900px) {
+  .detail-sheet-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.detail-left-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-cover-box {
+  position: relative;
+  background: var(--bg-card-blue);
+  border: 1px solid var(--cyan-border-strong);
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.detail-cover-frame {
+  position: relative;
+  width: 100%;
+  height: 440px;
+  border: 1px solid var(--cyan-border);
+  background: var(--bg-input);
+  overflow: hidden;
+}
+
+.detail-cover-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Title Block Specification Table */
+.title-block-panel {
+  background: var(--bg-card-blue);
+  border: 1px solid var(--cyan-border);
+  margin-bottom: 24px;
+}
+
+.panel-header-bar {
+  background: rgba(0, 240, 255, 0.1);
+  border-bottom: 1px solid var(--cyan-border);
+  padding: 10px 16px;
+}
+
+.panel-header-bar h2 {
+  font-size: 1.1rem;
+  color: var(--cyan-bright);
+}
+
+.title-block-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.title-block-table th, 
+.title-block-table td {
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  padding: 10px 14px;
+  text-align: left;
+}
+
+.title-block-table th {
+  background: rgba(5, 17, 36, 0.6);
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  width: 35%;
+}
+
+.title-block-table td {
+  color: var(--text-white);
+  font-weight: 500;
+}
+
+/* Notes & Specifications Section */
+.notes-section {
+  background: var(--bg-card-blue);
+  border: 1px solid var(--cyan-border);
+  padding: 20px;
+  margin-bottom: 24px;
+}
+
+.notes-section h3 {
+  font-size: 1.1rem;
+  color: var(--cyan-bright);
+  margin-bottom: 16px;
+  border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+  padding-bottom: 8px;
+}
+
+.note-item {
+  margin-bottom: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.note-item:last-child {
+  margin-bottom: 0;
+}
+
+.note-num {
+  font-size: 0.72rem;
+  color: var(--cyan-mid);
+  letter-spacing: 0.12em;
+}
+
+.note-item p {
+  color: var(--text-main);
+  line-height: 1.65;
+  font-size: 0.92rem;
+}
+
+/* Annotated Quote Callout */
+.quote-callout {
+  background: rgba(0, 240, 255, 0.05);
+  border: 1px solid var(--cyan-border-strong);
+  border-left: 4px solid var(--cyan-bright);
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.quote-tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  color: var(--cyan-bright);
+  letter-spacing: 0.15em;
+  margin-bottom: 8px;
+}
+
+.quote-callout blockquote {
+  font-style: italic;
+  color: var(--text-white);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+
+.quote-callout cite {
+  display: block;
+  font-style: normal;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-align: right;
+}
+
+/* Tags Section */
+.tags-section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.tag-chip {
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-cyan);
+  background: rgba(0, 240, 255, 0.08);
+  border: 1px solid var(--cyan-border);
+  padding: 4px 10px;
+}
+
+/* Related Sheets Strip */
+.related-sheets-section {
+  border-top: 2px solid var(--cyan-border-strong);
+  padding-top: 24px;
+  margin-top: 36px;
+}
+
+.related-sheets-section h3 {
+  font-size: 1.3rem;
+  color: var(--text-white);
+  margin-bottom: 20px;
+}
+
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+.related-card {
+  background: var(--bg-card-blue);
+  border: 1px solid var(--cyan-border);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.related-card:hover {
+  border-color: var(--cyan-bright);
+  transform: translateY(-2px);
+}
+
+.related-cover-frame {
+  width: 100%;
+  height: 160px;
+  background: var(--bg-input);
+  border: 1px solid var(--cyan-border);
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.related-cover-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.related-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.related-title a {
+  color: var(--text-white);
+}
+
+.related-meta {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  display: flex;
+  justify-content: space-between;
+}
+
+/* --------------------------------------------------------------------------
+   9. Signature Feature: Bill of Materials (BOM) Modal
+   -------------------------------------------------------------------------- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 14, 28, 0.85);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modal-card {
+  width: 100%;
+  max-width: 860px;
+  max-height: 85vh;
+  background: var(--bg-card-blue);
+  border: 2px solid var(--cyan-bright);
+  box-shadow: 0 0 30px rgba(0, 240, 255, 0.25);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.modal-header {
+  padding: 16px 20px;
+  background: rgba(0, 240, 255, 0.1);
+  border-bottom: 1px solid var(--cyan-border-strong);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-title-block h2 {
+  font-size: 1.3rem;
+  color: var(--cyan-bright);
+  margin-top: 2px;
+}
+
+.modal-body {
+  padding: 20px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.bom-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.84rem;
+}
+
+.bom-table th, 
+.bom-table td {
+  border: 1px solid var(--cyan-border);
+  padding: 10px 12px;
+  text-align: left;
+}
+
+.bom-table th {
+  background: rgba(5, 17, 36, 0.8);
+  color: var(--cyan-mid);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.bom-table tbody tr:hover {
+  background: rgba(0, 240, 255, 0.05);
+}
+
+.bom-table td a {
+  color: var(--text-white);
+  font-weight: 500;
+}
+
+.bom-table td a:hover {
+  color: var(--cyan-bright);
+}
+
+.empty-bom {
+  padding: 40px 20px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  border: 1px dashed var(--cyan-border);
+}
+
+.modal-footer {
+  padding: 14px 20px;
+  border-top: 1px solid var(--cyan-border);
+  background: rgba(5, 17, 36, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tech-stat {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  color: var(--cyan-bright);
+}
+
+/* --------------------------------------------------------------------------
+   10. Engineering Drawing Sheet Footer Title Block
+   -------------------------------------------------------------------------- */
+.blueprint-footer {
+  border-top: 2px solid var(--cyan-border-strong);
+  background: rgba(5, 17, 36, 0.95);
+  margin-top: auto;
+  padding: 20px 0;
+}
+
+.footer-container {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer-title-block {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  border: 1px solid var(--cyan-border);
+  background: var(--bg-card-blue);
+}
+
+.title-block-cell {
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+}
+
+.title-block-cell .cell-label {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  letter-spacing: 0.15em;
+}
+
+.title-block-cell .cell-val {
+  font-family: var(--font-heading);
+  font-size: 0.92rem;
+  color: var(--cyan-bright);
+  letter-spacing: 0.05em;
+}
+
+/* --------------------------------------------------------------------------
+   11. Motion Preference Accessibility
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

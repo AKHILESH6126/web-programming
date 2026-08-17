@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blueprint Archive // Technical Book Index</title>
+  <meta name="description" content="Engineering schematic draughting index and bill of materials specification archive for literature.">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+  <!-- Custom Blueprint CSS -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Accessibility Skip Link -->
+  <a href="#main-content" class="skip-link">SKIP TO MAIN CONTENT</a>
+
+  <!-- Blueprint Header -->
+  <header class="blueprint-header">
+    <div class="header-container">
+      <div class="wordmark-block">
+        <span class="tech-code">DWG-SPEC-F // REV 4.2</span>
+        <h1 class="wordmark-title"><a href="index.html">TECHNICAL BOOK ARCHIVE</a></h1>
+        <span class="tech-sub">ENGINEERING DRAUGHTING CATALOGUE</span>
+      </div>
+      <div class="header-actions">
+        <button id="bom-toggle-btn" class="btn btn-cyan" aria-expanded="false" aria-controls="bom-modal">
+          <span class="btn-icon">📐</span> DRAFTING SET <span id="bom-count-badge" class="badge">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="main-content" class="main-container">
+    
+    <!-- Drawing Sheet Header / Hero -->
+    <section class="sheet-hero">
+      <div class="hero-corner-tick tl">+</div>
+      <div class="hero-corner-tick tr">+</div>
+      <div class="hero-corner-tick bl">+</div>
+      <div class="hero-corner-tick br">+</div>
+      <div class="hero-inner">
+        <div class="sheet-info-cell">
+          <span class="cell-label">PROJECT TITLE</span>
+          <span class="cell-value">GLOBAL LITERATURE BLUEPRINT INDEX</span>
+        </div>
+        <div class="sheet-info-cell">
+          <span class="cell-label">DRAWING TYPE</span>
+          <span class="cell-value">SCHEMATIC CATALOGUE SHEET</span>
+        </div>
+        <div class="sheet-info-cell">
+          <span class="cell-label">SCALE</span>
+          <span class="cell-value">1:1 FULL SPEC</span>
+        </div>
+        <div class="sheet-info-cell">
+          <span class="cell-label">SPEC STATUS</span>
+          <span class="cell-value status-active">APPROVED // ACTIVE</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Toolbar: Search, Sort & Genre Filters -->
+    <section class="toolbar-section" aria-label="Catalogue Controls">
+      <div class="toolbar-top">
+        <!-- Search Box -->
+        <div class="search-box">
+          <label for="search-input" class="tech-label">SEARCH SPECIFICATIONS</label>
+          <div class="input-wrap">
+            <span class="input-icon">🔍</span>
+            <input type="search" id="search-input" class="tech-input" placeholder="Search title, author, or tag..." autocomplete="off">
+          </div>
+        </div>
+
+        <!-- Sort Select -->
+        <div class="sort-box">
+          <label for="sort-select" class="tech-label">SORT ORDER</label>
+          <select id="sort-select" class="tech-select">
+            <option value="title-asc">Title (A - Z)</option>
+            <option value="year-desc">Year (Newest First)</option>
+            <option value="year-asc">Year (Oldest First)</option>
+            <option value="rating-desc">Rating (High - Low)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Genre Filter Chips -->
+      <div class="filter-box">
+        <span class="tech-label">GENRE CLASSIFICATION CHIPS</span>
+        <div id="genre-chips" class="genre-chips-group" role="group" aria-label="Filter by genre">
+          <!-- Populated dynamically by main.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Results Bar -->
+    <div class="results-bar">
+      <div class="dim-line-decor"><span class="dim-arrow">←</span><span class="dim-body"></span><span class="dim-arrow">→</span></div>
+      <div class="results-count-wrap">
+        <span class="tech-label">CATALOGUE REGISTER:</span>
+        <span id="results-count" class="count-value">SHEETS: 0 / 0</span>
+      </div>
+      <div class="dim-line-decor"><span class="dim-arrow">←</span><span class="dim-body"></span><span class="dim-arrow">→</span></div>
+    </div>
+
+    <!-- Books Grid -->
+    <section id="books-grid" class="books-grid" aria-label="Book Drawings Grid">
+      <!-- Cards rendered dynamically by main.js -->
+    </section>
+
+    <!-- Empty State -->
+    <div id="empty-state" class="empty-state hidden">
+      <div class="empty-box">
+        <div class="empty-code">STATUS: 404 // NO MATCHES</div>
+        <h2>NO DRAWINGS MATCH SEARCH CRITERIA</h2>
+        <p>No specifications found matching current search and filter parameters. Adjust parameters or reset filters.</p>
+        <button id="reset-filters-btn" class="btn btn-cyan">RESET ALL FILTERS</button>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Bill of Materials (Drafting Set) Modal -->
+  <div id="bom-modal" class="modal-overlay hidden" aria-hidden="true" role="dialog" aria-labelledby="bom-modal-title">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title-block">
+          <span class="tech-label">PARTS SCHEDULE // DWG-SET-01</span>
+          <h2 id="bom-modal-title">BILL OF MATERIALS — DRAFTING SET</h2>
+        </div>
+        <button id="bom-close-btn" class="btn-close" aria-label="Close Drafting Set Modal">✕</button>
+      </div>
+      <div class="modal-body">
+        <div id="bom-table-container">
+          <!-- Rendered dynamically by JS -->
+        </div>
+      </div>
+      <div class="modal-footer">
+        <span id="bom-total-count" class="tech-stat">TOTAL SHEETS: 0</span>
+        <button id="bom-clear-btn" class="btn btn-outline-danger">CLEAR DRAFTING SET</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Engineering Footer Title Block -->
+  <footer class="blueprint-footer">
+    <div class="footer-container">
+      <div class="footer-title-block">
+        <div class="title-block-cell">
+          <span class="cell-label">PROJECT:</span>
+          <span class="cell-val">GLOBAL LITERARY INDEX</span>
+        </div>
+        <div class="title-block-cell">
+          <span class="cell-label">DRAWING NO:</span>
+          <span class="cell-val">DWG-2026-F-CAT</span>
+        </div>
+        <div class="title-block-cell">
+          <span class="cell-label">SCALE:</span>
+          <span class="cell-val">1:1 FULL</span>
+        </div>
+        <div class="title-block-cell">
+          <span class="cell-label">REVISION:</span>
+          <span class="cell-val">REV 4.2</span>
+        </div>
+        <div class="title-block-cell">
+          <span class="cell-label">DRAUGHTSMAN:</span>
+          <span class="cell-val">ANTIGRAVITY // ENGINE</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/books.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

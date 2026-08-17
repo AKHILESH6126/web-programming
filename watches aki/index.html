@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meridian &amp; Co. — Fine Timepieces</title>
+  <style>
+    /* CSS Reset & Custom Properties */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg-dark: #0f0f12;
+      --bg-card: #15151a;
+      --gold-accent: #c8a86a;
+      --gold-hairline: rgba(200, 168, 106, 0.22);
+      --gold-hover: rgba(200, 168, 106, 0.07);
+      --text-ivory: #ece7dd;
+      --text-muted: #9a958c;
+      --text-dim: #6e6a63;
+      --font-serif: Georgia, "Times New Roman", Times, serif;
+      --font-sans: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-ivory);
+      font-family: var(--font-sans);
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      padding: 3.5rem 1.5rem 4.5rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1140px;
+      margin: 0 auto;
+    }
+
+    /* Boutique Header */
+    header {
+      text-align: center;
+      padding-bottom: 2.5rem;
+      margin-bottom: 3rem;
+      border-bottom: 1px solid var(--gold-hairline);
+      position: relative;
+    }
+
+    header::after {
+      content: "";
+      display: block;
+      width: 44px;
+      height: 1px;
+      background-color: var(--gold-accent);
+      margin: 1.5rem auto 0;
+    }
+
+    .brand-title {
+      font-family: var(--font-serif);
+      font-size: 2.25rem;
+      font-weight: 400;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-ivory);
+      margin-bottom: 0.4rem;
+    }
+
+    .brand-tagline {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      color: var(--text-muted);
+    }
+
+    /* Section Meta */
+    .catalog-meta {
+      margin-bottom: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .catalog-title {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      color: var(--text-ivory);
+    }
+
+    .catalog-count {
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* Table Container & Base Styling */
+    .table-wrapper {
+      width: 100%;
+      overflow-x: auto;
+      border: 1px solid var(--gold-hairline);
+      border-radius: 2px;
+      background: var(--bg-card);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.92rem;
+    }
+
+    caption {
+      caption-side: top;
+      text-align: left;
+      padding: 1rem 1.5rem;
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      border-bottom: 1px solid rgba(200, 168, 106, 0.1);
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+
+    thead th {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--gold-accent);
+      padding: 1.15rem 1.25rem;
+      border-bottom: 1px solid var(--gold-hairline);
+      background-color: rgba(200, 168, 106, 0.04);
+      white-space: nowrap;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid rgba(200, 168, 106, 0.08);
+      transition: background-color 0.25s ease;
+    }
+
+    tbody tr:last-child {
+      border-bottom: none;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: rgba(236, 231, 221, 0.025);
+    }
+
+    tbody tr:hover {
+      background-color: var(--gold-hover);
+    }
+
+    th[scope="row"] {
+      font-family: var(--font-serif);
+      font-size: 1.02rem;
+      font-weight: 400;
+      color: var(--text-ivory);
+      letter-spacing: 0.03em;
+      padding: 1.15rem 1.25rem;
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 1.15rem 1.25rem;
+      color: #d1ccc0;
+      white-space: nowrap;
+    }
+
+    td.price {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      color: var(--text-ivory);
+      letter-spacing: 0.02em;
+    }
+
+    /* Refined Understated Availability Pills */
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.25rem 0.75rem;
+      border-radius: 12px;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .pill-in-stock {
+      background-color: rgba(140, 165, 130, 0.12);
+      color: #9ec495;
+      border: 1px solid rgba(140, 165, 130, 0.28);
+    }
+
+    .pill-low-stock {
+      background-color: rgba(212, 175, 100, 0.12);
+      color: #d9b66c;
+      border: 1px solid rgba(212, 175, 100, 0.28);
+    }
+
+    .pill-waitlist {
+      background-color: rgba(120, 150, 175, 0.12);
+      color: #9cbcd6;
+      border: 1px solid rgba(120, 150, 175, 0.28);
+    }
+
+    .pill-sold-out {
+      background-color: rgba(160, 140, 145, 0.12);
+      color: #bfa3a8;
+      border: 1px solid rgba(160, 140, 145, 0.28);
+    }
+
+    /* Boutique Legend & Footer */
+    footer {
+      margin-top: 3.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--gold-hairline);
+      width: 100%;
+    }
+
+    .legend-box {
+      background-color: rgba(21, 21, 26, 0.6);
+      border: 1px solid rgba(200, 168, 106, 0.12);
+      border-radius: 2px;
+      padding: 1.5rem;
+    }
+
+    .legend-heading {
+      font-family: var(--font-serif);
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold-accent);
+      margin-bottom: 1rem;
+    }
+
+    .legend-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    .legend-item .pill {
+      margin-top: 0.1rem;
+      flex-shrink: 0;
+    }
+
+    .footer-note {
+      text-align: center;
+      margin-top: 2.5rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      color: var(--text-dim);
+      text-transform: uppercase;
+    }
+
+    /* Mobile Responsive Card Transformation */
+    @media (max-width: 600px) {
+      body {
+        padding: 1.75rem 1rem 2.5rem;
+      }
+
+      header {
+        margin-bottom: 2rem;
+        padding-bottom: 1.75rem;
+      }
+
+      .brand-title {
+        font-size: 1.65rem;
+        letter-spacing: 0.16em;
+      }
+
+      .brand-tagline {
+        font-size: 0.68rem;
+        letter-spacing: 0.2em;
+      }
+
+      .catalog-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.3rem;
+      }
+
+      .table-wrapper {
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        overflow: visible;
+      }
+
+      table, tbody, tr, th, td {
+        display: block;
+        width: 100%;
+      }
+
+      /* Accessible visually-hidden header for screen readers */
+      thead tr {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        clip-path: inset(50%);
+        white-space: nowrap;
+      }
+
+      caption {
+        border: 1px solid var(--gold-hairline);
+        border-radius: 2px;
+        margin-bottom: 1.25rem;
+        background-color: var(--bg-card);
+      }
+
+      tbody tr {
+        background-color: var(--bg-card);
+        border: 1px solid var(--gold-hairline);
+        border-radius: 2px;
+        padding: 1.25rem;
+        margin-bottom: 1.25rem;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+      }
+
+      tbody tr:nth-child(even) {
+        background-color: var(--bg-card);
+      }
+
+      tbody tr:hover {
+        background-color: var(--bg-card);
+      }
+
+      th[scope="row"] {
+        font-family: var(--font-serif);
+        font-size: 1.15rem;
+        color: var(--text-ivory);
+        padding: 0 0 0.75rem 0;
+        margin-bottom: 0.75rem;
+        border-bottom: 1px solid var(--gold-hairline);
+        white-space: normal;
+      }
+
+      td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.55rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        white-space: normal;
+        text-align: right;
+        font-size: 0.88rem;
+      }
+
+      td:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+
+      td::before {
+        content: attr(data-label);
+        font-family: var(--font-sans);
+        font-size: 0.68rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--text-muted);
+        text-align: left;
+        margin-right: 1rem;
+      }
+
+      .legend-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1 class="brand-title">Meridian &amp; Co.</h1>
+      <p class="brand-tagline">Fine Timepieces since 1926</p>
+    </header>
+
+    <main>
+      <div class="catalog-meta">
+        <h2 class="catalog-title">Boutique Collection</h2>
+        <span class="catalog-count">9 Curated Editions</span>
+      </div>
+
+      <div class="table-wrapper">
+        <table>
+          <caption>Inventory specifications for current horological acquisitions</caption>
+          <thead>
+            <tr>
+              <th scope="col">Model</th>
+              <th scope="col">Maison</th>
+              <th scope="col">Price</th>
+              <th scope="col">Movement</th>
+              <th scope="col">Case</th>
+              <th scope="col">Water Resistance</th>
+              <th scope="col">Availability</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Aerodyne 40</th>
+              <td data-label="Maison">Meridian &amp; Co.</td>
+              <td data-label="Price" class="price">$6,900</td>
+              <td data-label="Movement">Automatic</td>
+              <td data-label="Case">40mm Steel</td>
+              <td data-label="Water Resistance">100m</td>
+              <td data-label="Availability"><span class="pill pill-in-stock">In Stock</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Celestia Moonphase</th>
+              <td data-label="Maison">Aurelian</td>
+              <td data-label="Price" class="price">$12,400</td>
+              <td data-label="Movement">Automatic</td>
+              <td data-label="Case">39mm Rose Gold</td>
+              <td data-label="Water Resistance">30m</td>
+              <td data-label="Availability"><span class="pill pill-low-stock">Low Stock</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Nocturne GMT</th>
+              <td data-label="Maison">Meridian &amp; Co.</td>
+              <td data-label="Price" class="price">$8,250</td>
+              <td data-label="Movement">Automatic GMT</td>
+              <td data-label="Case">41mm Titanium</td>
+              <td data-label="Water Resistance">200m</td>
+              <td data-label="Availability"><span class="pill pill-in-stock">In Stock</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Régence Ultra-Thin</th>
+              <td data-label="Maison">Voss Genève</td>
+              <td data-label="Price" class="price">$18,900</td>
+              <td data-label="Movement">Manual</td>
+              <td data-label="Case">38mm White Gold</td>
+              <td data-label="Water Resistance">30m</td>
+              <td data-label="Availability"><span class="pill pill-waitlist">Waitlist</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Tempest Diver 300</th>
+              <td data-label="Maison">Halcyon</td>
+              <td data-label="Price" class="price">$4,600</td>
+              <td data-label="Movement">Automatic</td>
+              <td data-label="Case">42mm Steel</td>
+              <td data-label="Water Resistance">300m</td>
+              <td data-label="Availability"><span class="pill pill-in-stock">In Stock</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Aria Skeleton</th>
+              <td data-label="Maison">Aurelian</td>
+              <td data-label="Price" class="price">$22,500</td>
+              <td data-label="Movement">Manual Skeleton</td>
+              <td data-label="Case">40mm Platinum</td>
+              <td data-label="Water Resistance">30m</td>
+              <td data-label="Availability"><span class="pill pill-sold-out">Sold Out</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Continental Chronograph</th>
+              <td data-label="Maison">Meridian &amp; Co.</td>
+              <td data-label="Price" class="price">$9,750</td>
+              <td data-label="Movement">Automatic Chronograph</td>
+              <td data-label="Case">41mm Steel</td>
+              <td data-label="Water Resistance">100m</td>
+              <td data-label="Availability"><span class="pill pill-in-stock">In Stock</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Solaire Perpetual</th>
+              <td data-label="Maison">Voss Genève</td>
+              <td data-label="Price" class="price">$46,000</td>
+              <td data-label="Movement">Perpetual Calendar</td>
+              <td data-label="Case">40mm Rose Gold</td>
+              <td data-label="Water Resistance">50m</td>
+              <td data-label="Availability"><span class="pill pill-waitlist">Waitlist</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Field Officer 38</th>
+              <td data-label="Maison">Halcyon</td>
+              <td data-label="Price" class="price">$2,950</td>
+              <td data-label="Movement">Automatic</td>
+              <td data-label="Case">38mm Bronze</td>
+              <td data-label="Water Resistance">100m</td>
+              <td data-label="Availability"><span class="pill pill-in-stock">In Stock</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+
+    <footer>
+      <div class="legend-box">
+        <h3 class="legend-heading">Availability Status Legend</h3>
+        <div class="legend-grid">
+          <div class="legend-item">
+            <span class="pill pill-in-stock">In Stock</span>
+            <span>Available for immediate white-glove delivery or boutique collection.</span>
+          </div>
+          <div class="legend-item">
+            <span class="pill pill-low-stock">Low Stock</span>
+            <span>Limited pieces remaining in global boutique inventory.</span>
+          </div>
+          <div class="legend-item">
+            <span class="pill pill-waitlist">Waitlist</span>
+            <span>Subject to boutique allocation and client registration.</span>
+          </div>
+          <div class="legend-item">
+            <span class="pill pill-sold-out">Sold Out</span>
+            <span>Edition fully allocated; contact concierge for archive inquiry.</span>
+          </div>
+        </div>
+      </div>
+
+      <p class="footer-note">Meridian &amp; Co. Horology &bull; All Rights Reserved</p>
+    </footer>
+  </div>
+</body>
+</html>
