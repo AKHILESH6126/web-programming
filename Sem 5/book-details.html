@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Book Information</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 30px;
+      background-color: #ffffff;
+      color: #1e293b;
+      line-height: 1.6;
+    }
+    .card {
+      max-width: 600px;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 24px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+    .title {
+      font-size: 1.8rem;
+      color: #0f172a;
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+    .meta {
+      font-size: 0.95rem;
+      color: #64748b;
+      margin-bottom: 16px;
+    }
+    .badge {
+      display: inline-block;
+      background-color: #e0f2fe;
+      color: #0369a1;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+    .summary-title {
+      font-weight: 600;
+      color: #334155;
+      margin-bottom: 8px;
+    }
+    .summary {
+      color: #475569;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1 class="title" id="book-title">Loading...</h1>
+    <div class="meta">
+      <strong>Author:</strong> <span id="book-author">...</span> | 
+      <strong>Published:</strong> <span id="book-year">...</span>
+    </div>
+    <div class="badge" id="book-genre">...</div>
+    
+    <div class="summary-title">Synopsis</div>
+    <p class="summary" id="book-summary">...</p>
+  </div>
+
+  <script>
+    // Book Data Store
+    const booksData = {
+      "1": {
+        title: "To Kill a Mockingbird",
+        author: "Harper Lee",
+        year: "1960",
+        genre: "Classic Literature",
+        summary: "Set in small-town Alabama during the Great Depression, the story follows Scout Finch, whose father Atticus Finch, a lawyer, defends a Black man falsely accused of raping a white woman."
+      },
+      "2": {
+        title: "1984",
+        author: "George Orwell",
+        year: "1949",
+        genre: "Dystopian Fiction",
+        summary: "A chilling warning about totalitarianism, surveillance, and thought control, following Winston Smith as he navigates a world ruled by 'Big Brother'."
+      },
+      "3": {
+        title: "The Great Gatsby",
+        author: "F. Scott Fitzgerald",
+        year: "1925",
+        genre: "Tragedy / Novel",
+        summary: "Set in the Roaring Twenties, this novel explores themes of wealth, ambition, love, and the American Dream through the mysterious millionaire Jay Gatsby."
+      },
+      "4": {
+        title: "Pride and Prejudice",
+        author: "Jane Austen",
+        year: "1813",
+        genre: "Romance / Novel of Manners",
+        summary: "A romantic classic following the turbulent relationship between Elizabeth Bennet, the daughter of a country gentleman, and Fitzwilliam Darcy, a rich aristocratic landowner."
+      },
+      "5": {
+        title: "The Hobbit",
+        author: "J.R.R. Tolkien",
+        year: "1937",
+        genre: "High Fantasy",
+        summary: "Bilbo Baggins, a comfortable home-loving hobbit, is swept into an epic quest to reclaim the lost Dwarf Kingdom of Erebor from the fearsome dragon Smaug."
+      }
+    };
+
+    // Extract book ID from query parameter: ?book=X
+    const urlParams = new URLSearchParams(window.location.search);
+    const bookId = urlParams.get('book');
+
+    // Populate data
+    if (bookId && booksData[bookId]) {
+      const book = booksData[bookId];
+      document.getElementById('book-title').innerText = book.title;
+      document.getElementById('book-author').innerText = book.author;
+      document.getElementById('book-year').innerText = book.year;
+      document.getElementById('book-genre').innerText = book.genre;
+      document.getElementById('book-summary').innerText = book.summary;
+    } else {
+      document.getElementById('book-title').innerText = "Book Not Found";
+      document.getElementById('book-summary').innerText = "Please select a valid book from the left panel.";
+    }
+  </script>
+
+</body>
+</html>

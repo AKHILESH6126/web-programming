@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Library & Book Directory</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body, html {
+      height: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow: hidden;
+    }
+    /* Frame layout container */
+    .container {
+      display: flex;
+      width: 100vw;
+      height: 100vh;
+    }
+    /* Left Frame styling (30% width) */
+    .left-frame {
+      width: 30%;
+      height: 100%;
+      border: none;
+      border-right: 2px solid #e0e0e0;
+    }
+    /* Right Frame styling (70% width) */
+    .right-frame {
+      width: 70%;
+      height: 100%;
+      border: none;
+    }
+    /* Mobile responsive fallback */
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+      .left-frame {
+        width: 100%;
+        height: 40%;
+        border-right: none;
+        border-bottom: 2px solid #e0e0e0;
+      }
+      .right-frame {
+        width: 100%;
+        height: 60%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- Left Frame: Book List -->
+    <iframe src="books-list.html" class="left-frame" title="Book List Navigation"></iframe>
+    
+    <!-- Right Frame: Book Details (Targeted by links in left-frame) -->
+    <iframe src="welcome.html" name="detail_frame" class="right-frame" title="Book Details Panel"></iframe>
+  </div>
+
+</body>
+</html>
