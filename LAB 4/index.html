@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Country Capital Finder</title>
+  <style>
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      background: #f4f7fb;
+      color: #1e293b;
+      font-family: Arial, sans-serif;
+    }
+
+    main {
+      width: min(560px, calc(100% - 40px));
+      padding: 32px;
+      border-radius: 14px;
+      background: #ffffff;
+      box-shadow: 0 12px 35px rgba(15, 23, 42, 0.12);
+    }
+
+    h1 { margin-top: 0; color: #0f4c81; }
+
+    .country-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px;
+      margin-top: 22px;
+    }
+
+    select {
+      min-width: 190px;
+      padding: 10px 12px;
+      border: 1px solid #94a3b8;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    /* Capital font customization: color, bold weight, and size. */
+    #capital {
+      color: #c2410c;
+      font-size: 1.45rem;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Country Capital Finder</h1>
+    <p>Select a country to display its capital.</p>
+
+    <div class="country-row">
+      <label for="country">Country:</label>
+      <select id="country">
+        <option value="">-- Select a country --</option>
+        <option value="New Delhi">India</option>
+        <option value="Tokyo">Japan</option>
+        <option value="Canberra">Australia</option>
+        <option value="Ottawa">Canada</option>
+        <option value="Paris">France</option>
+      </select>
+      <span id="capital" aria-live="polite"></span>
+    </div>
+  </main>
+
+  <script>
+    const countrySelect = document.getElementById('country');
+    const capital = document.getElementById('capital');
+
+    countrySelect.addEventListener('change', function () {
+      capital.textContent = this.value ? `Capital: ${this.value}` : '';
+    });
+  </script>
+</body>
+</html>
