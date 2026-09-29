@@ -1,0 +1,37 @@
+* { box-sizing: border-box; }
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(rgba(5, 31, 60, .58), rgba(4, 22, 42, .75)), url('campus-background.svg') center / cover fixed;
+}
+
+.page { width: min(1000px, calc(100% - 36px)); margin: 0 auto; padding: 48px 0; text-align: center; }
+
+header {
+  padding: 34px 24px;
+  border: 3px solid #ffe085;
+  border-radius: 18px;
+  background: rgba(5, 22, 47, .82);
+  box-shadow: 0 16px 45px rgba(0, 0, 0, .28);
+}
+
+h1 { margin: 0; color: #ffe085; font-family: Georgia, serif; font-size: clamp(2.4rem, 7vw, 4.8rem); letter-spacing: .06em; text-transform: uppercase; }
+address { margin-top: 12px; color: #dcecff; font-size: clamp(.9rem, 2.3vw, 1.2rem); font-style: normal; line-height: 1.6; }
+
+.notice { margin: 28px 0; overflow: hidden; border: 2px solid #ffe085; border-radius: 10px; background: rgba(123, 24, 45, .9); white-space: nowrap; }
+.notice p { display: inline-block; margin: 0; padding: 14px 0; color: #fff7d6; font-weight: bold; animation: scroll 17s linear infinite; }
+@keyframes scroll { from { transform: translateX(105%); } to { transform: translateX(-105%); } }
+
+section { padding: 30px; border: 3px solid #d4e7ff; border-radius: 18px; background: rgba(255, 255, 255, .92); color: #17324d; }
+h2 { margin-top: 0; color: #0b4f79; font-size: 2rem; font-family: Georgia, serif; }
+.courses { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+.course { padding: 19px 12px; border: 2px solid currentColor; border-radius: 10px; box-shadow: 0 5px 14px rgba(0, 0, 0, .12); font-size: 1.2rem; }
+.computer { background: #e5f4ff; color: #005b96; font-family: 'Courier New', monospace; font-weight: bold; }
+.business { background: #fff2d9; color: #9a4e00; font-family: Georgia, serif; font-style: italic; }
+.science { background: #e7faeb; color: #16723a; font-family: Verdana, sans-serif; text-decoration: underline; }
+.arts { background: #f8e8ff; color: #7d238b; font-family: 'Comic Sans MS', cursive; font-weight: bold; }
+.engineering { background: #ffe8e8; color: #a21c35; font-family: Impact, sans-serif; letter-spacing: .08em; }
+footer { margin-top: 22px; font-size: .88rem; text-shadow: 0 1px 3px #000; }
