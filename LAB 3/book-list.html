@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book List</title>
+  <style>
+    body { margin: 0; min-height: 100vh; font-family: Georgia, serif; background: #f7f0e8; color: #3d2b1f; }
+    header { padding: 26px 20px 20px; background: #7f5539; color: #fffaf2; }
+    h1 { margin: 0; font-size: 1.65rem; }
+    header p { margin: 7px 0 0; font: 0.82rem Arial, sans-serif; opacity: .9; }
+    nav { padding: 14px; }
+    a { display: block; margin: 9px 0; padding: 13px 12px; border-left: 4px solid #c69c6d; background: #fffaf2; color: #4f3424; text-decoration: none; font-weight: bold; line-height: 1.35; }
+    a:hover, a:focus { background: #ead4bd; border-left-color: #7f5539; }
+    small { display: block; margin-top: 4px; color: #786051; font: 0.78rem Arial, sans-serif; }
+    footer { padding: 8px 20px 20px; color: #786051; font: 0.75rem Arial, sans-serif; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Book Shelf</h1>
+    <p>Choose a title to view its information.</p>
+  </header>
+  <nav aria-label="Book list">
+    <a href="book-info.html?book=pride" target="bookInfo">Pride and Prejudice<small>Jane Austen</small></a>
+    <a href="book-info.html?book=mockingbird" target="bookInfo">To Kill a Mockingbird<small>Harper Lee</small></a>
+    <a href="book-info.html?book=1984" target="bookInfo">1984<small>George Orwell</small></a>
+    <a href="book-info.html?book=alchemist" target="bookInfo">The Alchemist<small>Paulo Coelho</small></a>
+    <a href="book-info.html?book=harry" target="bookInfo">Harry Potter and the Philosopher's Stone<small>J. K. Rowling</small></a>
+  </nav>
+  <footer>Book Information Portal</footer>
+</body>
+</html>

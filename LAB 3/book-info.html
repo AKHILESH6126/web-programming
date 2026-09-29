@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Information</title>
+  <style>
+    body { margin: 0; padding: 40px; font-family: Arial, sans-serif; background: #fffaf2; color: #3d2b1f; }
+    main { max-width: 760px; margin: 0 auto; }
+    .label { color: #7f5539; font-size: .78rem; font-weight: bold; letter-spacing: .12em; text-transform: uppercase; }
+    h1 { margin: 8px 0 4px; font: 2.35rem Georgia, serif; color: #4f3424; }
+    .author { margin: 0 0 28px; color: #8a644b; font: italic 1.1rem Georgia, serif; }
+    .card { padding: 22px; border: 1px solid #dfc5aa; border-left: 5px solid #7f5539; background: #fff; }
+    dl { display: grid; grid-template-columns: 145px 1fr; gap: 13px 18px; margin: 0; }
+    dt { font-weight: bold; color: #7f5539; }
+    dd { margin: 0; line-height: 1.6; }
+    .summary { margin-top: 27px; line-height: 1.75; color: #594033; }
+  </style>
+</head>
+<body>
+  <main id="content"></main>
+  <script>
+    const books = {
+      pride: { title: 'Pride and Prejudice', author: 'Jane Austen', year: '1813', genre: 'Classic Romance', pages: '432', summary: 'Elizabeth Bennet navigates family expectations, social class, and her changing first impressions of the proud Mr. Darcy.' },
+      mockingbird: { title: 'To Kill a Mockingbird', author: 'Harper Lee', year: '1960', genre: 'Southern Gothic', pages: '336', summary: 'Scout Finch recounts a formative childhood in Alabama as her father defends a Black man wrongly accused of a crime.' },
+      '1984': { title: '1984', author: 'George Orwell', year: '1949', genre: 'Dystopian Fiction', pages: '328', summary: 'Winston Smith struggles to preserve truth and individuality under the constant surveillance of a totalitarian state.' },
+      alchemist: { title: 'The Alchemist', author: 'Paulo Coelho', year: '1988', genre: 'Adventure Fiction', pages: '208', summary: 'A young shepherd follows a recurring dream across the desert, seeking treasure and discovering the meaning of his personal journey.' },
+      harry: { title: "Harry Potter and the Philosopher's Stone", author: 'J. K. Rowling', year: '1997', genre: 'Fantasy', pages: '223', summary: 'An orphaned boy learns that he is a wizard and begins his first year at Hogwarts School of Witchcraft and Wizardry.' }
+    };
+    const key = new URLSearchParams(location.search).get('book');
+    const book = books[key] || books.pride;
+    document.title = book.title + ' - Book Information';
+    document.getElementById('content').innerHTML = `
+      <div class="label">Book Information</div>
+      <h1>${book.title}</h1>
+      <p class="author">by ${book.author}</p>
+      <section class="card" aria-label="Book details">
+        <dl><dt>Author</dt><dd>${book.author}</dd><dt>Published</dt><dd>${book.year}</dd><dt>Genre</dt><dd>${book.genre}</dd><dt>Pages</dt><dd>${book.pages}</dd></dl>
+      </section>
+      <p class="summary">${book.summary}</p>`;
+  </script>
+</body>
+</html>
