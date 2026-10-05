@@ -1,0 +1,39 @@
+* { box-sizing: border-box; }
+body {
+  margin: 0; min-height: 100vh; padding: 1.5rem 1rem;
+  display: flex; justify-content: center; align-items: flex-start;
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+  color: #f3f1e7;
+  background: #5a3b1f repeating-linear-gradient(45deg, #5a3b1f 0 14px, #51351b 14px 28px);
+}
+.board {
+  width: 100%; max-width: 440px; padding: 1.6rem;
+  background: #24402f;
+  border: 12px solid #a67c52; border-radius: 8px;
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, .45), 0 10px 30px rgba(0, 0, 0, .5);
+}
+h1 { margin: 0 0 1.2rem; font-size: 1.8rem; text-align: center; text-shadow: 0 0 6px rgba(255, 255, 255, .35); }
+h2 { margin: 1.5rem 0 .5rem; font-size: 1.1rem; border-bottom: 2px dashed rgba(243, 241, 231, .5); padding-bottom: .3rem; }
+label { display: block; margin: .8rem 0 .25rem; font-weight: bold; }
+input, select {
+  width: 100%; padding: .65rem; font-size: 1rem; color: #f3f1e7;
+  background: rgba(0, 0, 0, .25); border: 2px solid #f3f1e7; border-radius: 6px;
+}
+select option { color: #111; }
+input:focus, select:focus, button:focus-visible { outline: 3px solid #ffd966; outline-offset: 2px; }
+.buttons { display: flex; gap: .8rem; margin-top: 1.2rem; }
+button {
+  flex: 1; padding: .7rem; font-size: 1rem; font-weight: bold; cursor: pointer;
+  color: #1b2d22; background: #ffd966; border: 2px solid #ffd966; border-radius: 6px;
+}
+button:hover { background: #ffe699; }
+button.ghost { background: transparent; color: #f3f1e7; border-color: #f3f1e7; }
+button.ghost:hover { background: rgba(255, 255, 255, .1); }
+#result {
+  margin: 1.4rem 0 0; padding: .9rem; min-height: 3.2rem; text-align: center;
+  font-size: 1.4rem; border: 2px dashed #ffd966; border-radius: 6px; color: #ffd966;
+}
+#result.error { color: #ff9b8a; border-color: #ff9b8a; font-size: 1.05rem; }
+#history { margin: 0; padding-left: 1.2rem; }
+#history li { margin: .25rem 0; }
+#history .empty { list-style: none; margin-left: -1.2rem; opacity: .7; }
