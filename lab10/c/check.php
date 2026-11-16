@@ -22,7 +22,7 @@ if ($name === "" || $age <= 0) {
     <?php } else { ?>
       <h1 class="success">Welcome to this site</h1>
     <?php } ?>
-    <a href="index.html">&larr; Go back</a>
+    <a href="index.html">Go Back</a>
   </div>
 </body>
 </html>
