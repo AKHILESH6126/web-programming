@@ -1,0 +1,30 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  max-width: 480px;
+  background: #f4f6f8;
+  color: #222;
+}
+.card { background: #fff; padding: 1.5rem; border: 1px solid #ccc; border-radius: 6px; }
+h1 { text-align: center; color: #1f4e79; margin-top: 0; }
+label { display: block; margin: .8rem 0 .3rem; font-weight: bold; }
+input[type=text], input[type=tel], input[type=email], select {
+  width: 100%; box-sizing: border-box; padding: .55rem; font-size: 1rem;
+  border: 1px solid #aaa; border-radius: 4px;
+}
+.radios { display: flex; gap: 1.2rem; }
+.radios label { font-weight: normal; margin: 0; }
+.buttons { display: flex; gap: .8rem; margin-top: 1.3rem; }
+button {
+  flex: 1; padding: .6rem; font-size: 1rem; cursor: pointer;
+  color: #fff; background: #1f4e79; border: 2px solid #1f4e79; border-radius: 4px;
+}
+button:hover { background: #2e6da4; }
+button.ghost { background: #fff; color: #1f4e79; }
+table { width: 100%; border-collapse: collapse; }
+th, td { border: 1px solid #ccc; padding: .6rem; text-align: left; }
+th { background: #1f4e79; color: #fff; width: 40%; }
+td { word-break: break-word; }
+#message { color: #c0392b; text-align: center; }
+.back { display: inline-block; margin-top: 1rem; color: #1f4e79; }
