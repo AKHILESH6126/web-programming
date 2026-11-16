@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Book List</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 24px 18px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f8fafc;
+      color: #1e293b;
+    }
+    h2 { margin: 0 0 16px; font-size: 1.3rem; color: #0f172a; }
+    ul { list-style: none; margin: 0; padding: 0; }
+    li { margin-bottom: 10px; }
+    a {
+      display: block;
+      padding: 10px 14px;
+      color: #0369a1;
+      text-decoration: none;
+      font-weight: 600;
+      background-color: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-left: 4px solid #0369a1;
+      border-radius: 6px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    }
+    a:hover, a:focus-visible { background-color: #e0f2fe; }
+    a.active { background-color: #0369a1; color: #ffffff; }
+    .home { margin-top: 24px; border-left-color: #64748b; color: #475569; font-weight: normal; }
+  </style>
+</head>
+<body>
+  <h2>Book List</h2>
+  <ul>
+    <li><a href="book-details.html?book=1" target="detail_frame">To Kill a Mockingbird</a></li>
+    <li><a href="book-details.html?book=2" target="detail_frame">1984</a></li>
+    <li><a href="book-details.html?book=3" target="detail_frame">The Great Gatsby</a></li>
+    <li><a href="book-details.html?book=4" target="detail_frame">Pride and Prejudice</a></li>
+    <li><a href="book-details.html?book=5" target="detail_frame">The Hobbit</a></li>
+  </ul>
+  <a class="home" href="welcome.html" target="detail_frame">Welcome Page</a>
+
+  <script>
+    // Highlight the book that is currently open
+    var links = document.querySelectorAll("ul a");
+    for (var i = 0; i < links.length; i++) {
+      links[i].addEventListener("click", function () {
+        for (var j = 0; j < links.length; j++) links[j].classList.remove("active");
+        this.classList.add("active");
+      });
+    }
+  </script>
+</body>
+</html>
