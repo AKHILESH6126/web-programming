@@ -26,7 +26,7 @@ python -m http.server 8080
 This folder is its own repository. To publish it:
 
 1. **Create a new empty repo** on GitHub, e.g. `nexus-arena` (github.com → New repository → don't add a README).
-2. **Push this folder** (run these from inside `1-nexus-arena/`):
+2. **Push this folder** (run these from inside `nexus-arena/`):
 
    ```bash
    git init
